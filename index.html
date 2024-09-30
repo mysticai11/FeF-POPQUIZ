@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="container">
+        <header>
+            <nav class="nav-links">
+                <a href="#" onclick="showHome()">Home</a>
+                <a href="#" onclick="showLeaderboard()">Leaderboard</a>
+            </nav>
+        </header>
+
+        <div id="customAlert"></div>
+
+        <button id="darkModeToggle" onclick="toggleDarkMode()">
+            <i class="fas fa-moon"></i>
+        </button>
+        <button id="muteToggle" onclick="toggleMute()">
+            <i class="fas fa-volume-up"></i>
+        </button>
+        <div id="welcomeContainer" class="quiz-container">
+            <h1>Welcome to the Quiz!</h1>
+            <img src="media/welcome.gif" alt="Welcome GIF" class="welcome-gif">
+            <p>Enter your name to get started!</p>
+            <input type="text" id="playerName" placeholder="Enter your name">
+            <button onclick="showCategories()">Start Quiz</button>
+        </div>
+
+        <div id="categoryContainer" class="quiz-container hidden">
+            <h2>Choose a Category</h2>
+            <div class="category-grid">
+                <div class="category-card" onclick="startQuiz('Anime')">
+                    <img src="media/gif ani.gif" alt="Anime">
+                    <h3>Anime</h3>
+                </div>
+                <div class="category-card" onclick="startQuiz('Comics')">
+                    <img src="media/gif comic.gif" alt="Comics">
+                    <h3>Comics</h3>
+                </div>
+                <div class="category-card" onclick="startQuiz('HarryPotter')">
+                    <img src="media/gif hp.gif" alt="Harry Potter">
+                    <h3>Harry Potter</h3>
+                </div>
+                <div class="category-card" onclick="startQuiz('ComputerScience')">
+                    <img src="media/cs.gif" alt="Computer Science">
+                    <h3>Computer Science</h3>
+                </div>
+            </div>
+        </div>
+
+        <div id="quiz" class="quiz-container hidden">
+            <div id="questionContainer"></div>
+            <div id="questionProgress">
+                Question <span id="currentQuestionNumber"></span> of <span id="totalQuestions"></span>
+            </div>
+            <div id="feedbackMessage" class="feedback-message"></div>
+        </div>
+
+        <div id="scoreContainer" class="quiz-container hidden">
+            <h2>Quiz Completed!</h2>
+            <img src="media/bye.gif" alt="Completion GIF" class="completion-gif">
+            <p id="finalScore"></p>
+            <button onclick="reviewAnswers()">Review Answers</button>
+            <button onclick="showLeaderboard()">View Leaderboard</button>
+            <button onclick="showCategories()">Play Again</button>
+        </div>
+
+        <div id="reviewContainer" class="quiz-container hidden">
+            <h2>Review Your Answers</h2>
+            <div id="reviewList"></div>
+            <button onclick="showCategories()">Play Again</button>
+        </div>
+
+        <div id="leaderboardContainer" class="quiz-container hidden">
+            <h2>Leaderboard</h2>
+            <div id="leaderboardList"></div>
+            <button onclick="showCategories()">Play Again</button>
+            <button onclick="clearLeaderboard()">Clear Leaderboard</button>
+        </div>
+    </div>
+
+    <audio id="correctSound" src="media/good-6081.mp3"></audio>
+    <audio id="incorrectSound" src="media/buzzer-or-wrong-answer-20582.mp3"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
